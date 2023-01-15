@@ -1,0 +1,4 @@
+{
+  "spec_files": ["**/*[sS]pec.ts"],
+  "random": false
+}

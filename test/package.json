@@ -1,0 +1,17 @@
+{
+  "name": "test",
+  "private": true,
+  "engines": {
+    "node": ">=16 <=19.5",
+    "npm": ">=8 <9"
+  },
+  "scripts": {
+    "test": "ts-node ../node_modules/jasmine/bin/jasmine --config=jasmine.json"
+  },
+  "dependencies": {
+    "@types/selenium-webdriver": "^4.1.9",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "selenium-webdriver": "^4.6.1",
+    "tsc-alias": "^1.7.1"
+  }
+}
