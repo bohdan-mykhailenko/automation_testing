@@ -1,10 +1,9 @@
-**Technologies:**
-+ Selenium
-+ TypeScript
-+ Jasmine
+Build with: 
+1. Selenium 
+2. Jasmine
+3. TypeScript
 
-**To run:**
-1. open root of the project
-2. open the terminal
-3. use "npm install" command
-4. use "npm run test -w test" command
+To start:
+1. open root of project
+2. run command: npm install 
+3. run command: npm test
