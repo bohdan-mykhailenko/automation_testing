@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "selenium",
   "private": true,
   "engines": {
     "node": ">=16 <=19.5",

@@ -1,61 +1,26 @@
-import { By } from 'selenium-webdriver';
-import { DriverController } from '../controller/driver.controller';
+import { Controller } from '../controller/controller';
 
-export const deleteTestRecord = async (driverController: DriverController, testName: string): Promise<boolean> => {
-  await driverController.waitCssElement('.oxd-table .oxd-table-body');
-  await driverController.waitCssElement('.oxd-table .oxd-table-body > .oxd-table-card > .oxd-table-row');
+export const deleteTestRecord = async (controller: Controller, testName: string): Promise<boolean | number> => {
+  await controller.waitElement('.oxd-table .oxd-table-body');
+  await controller.waitElement('.oxd-table .oxd-table-body > .oxd-table-card > .oxd-table-row');
 
-  // let allUserRecords = await driverController.getAllElementByCss(
-  //   '.oxd-table .oxd-table-body > .oxd-table-card > .oxd-table-row',
-  // );
-
-  // if (!allUserRecords || !allUserRecords?.length) {
-  //   throw Error;
-  // }
-
-  // let i = 1;
-  // for (const item of allUserRecords) {
-  //   const record = await item.findElement(By.css('.oxd-table-cell:nth-child(2) div'));
-
-  //   if ((await record.getText()).trim() === testName.trim()) {
-  //     break;
-  //   }
-
-  //   i++;
-  // }
-  const [i] = await driverController.findTargetCssElement(driverController, testName);
-
+  //find test record
+  const [i] = await controller.findTargetElement(controller, testName);
   const testRecord = `.oxd-table .oxd-table-card:nth-child(${i})`;
 
-  await driverController.elementAction({
+  //delete test record
+  await controller.elementAction({
     type: 'click',
     cssSelector: `${testRecord} .oxd-table-row .oxd-table-cell:nth-child(6) div > button`,
   });
-
-  await driverController.waitCssElement('.orangehrm-modal-footer');
-
-  await driverController.elementAction({
+  await controller.waitElement('.orangehrm-modal-footer');
+  await controller.elementAction({
     type: 'click',
     cssSelector: '.orangehrm-modal-footer button:last-child',
   });
 
-  // allUserRecords = await driverController.getAllElementByCss(
-  //   '.oxd-table .oxd-table-body > .oxd-table-card > .oxd-table-row',
-  // );
+  //check id delete test record
+  const [j, isDeleteRecord] = await controller.findTargetElement(controller, testName, true);
 
-  // if (!allUserRecords || !allUserRecords.length) {
-  //   return true
-  // }
-
-  const [isDeleteRecord] = await driverController.findTargetCssElement(driverController, testName, true);
-
-  // for (const item of allUserRecords) {
-  //   const record = await item.findElement(By.css('.oxd-table-cell:nth-child(2) div'));
-  //   if ((await item.getText()).trim() === testName.trim()) {
-  //     return false
-  //   }
-  // }
-
-  return true
+  return isDeleteRecord
 };
-

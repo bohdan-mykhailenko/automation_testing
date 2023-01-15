@@ -1,21 +1,24 @@
-import { DriverController } from '../controller/driver.controller';
+import { Controller } from '../controller/controller';
 
-export const auth = async (driverController: DriverController): Promise<void> => {
-  await driverController.elementAction({
+export const auth = async (controller: Controller): Promise<void> => {
+
+  //fill name
+  await controller.elementAction({
     type: 'addText',
     text: 'Admin',
     cssSelector: 'input[name="username"]',
   });
 
-  await driverController.elementAction({
+  //fill password
+  await controller.elementAction({
     type: 'addText',
     text: 'admin123',
     cssSelector: 'input[name="password"]',
   });
 
-  await driverController.elementAction({
+  //sumbit
+  await controller.elementAction({
     type: 'click',
     cssSelector: 'button[type="submit"]',
   });
 };
-
