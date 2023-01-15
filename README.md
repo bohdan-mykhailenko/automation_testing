@@ -6,4 +6,4 @@ Build with:
 To start:
 1. open root of project
 2. run command: npm install 
-3. run command: npm test
+3. run command: npm run test -w test
